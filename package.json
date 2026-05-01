@@ -65,9 +65,12 @@
     "wrangler": "^4.79.0"
   },
   "dependencies": {
-    "@sovereignbase/bytecodec": "^1.5.1",
-    "@sovereignbase/cryptosuite": "^2.0.5",
-    "@sovereignbase/observed-remove-set": "^1.0.1"
+    "@sovereignbase/convergent-replicated-list": "^1.0.8",
+    "@sovereignbase/convergent-replicated-map": "^1.0.2",
+    "@sovereignbase/convergent-replicated-set": "^0.0.0",
+    "@sovereignbase/convergent-replicated-struct": "^1.1.5",
+    "@sovereignbase/convergent-replicated-text": "^1.0.1",
+    "@sovereignbase/cryptosuite": "^2.2.1"
   },
   "repository": {
     "type": "git",
