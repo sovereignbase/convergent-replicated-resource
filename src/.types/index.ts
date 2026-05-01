@@ -7,30 +7,29 @@ import {
   VerifyKey,
 } from '@sovereignbase/cryptosuite'
 
-export type ConveregentReplicatedResourceSnapshotPrivate = CRStructSnapshot<{
-  kind: 'private'
-  data: CipherMessage
+type ConvergentReplicatedResourceClearanceSnapshot = CRStructSnapshot<{
+  owner: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
+  manager: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
+  editor: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
+}>
+
+type ConvergentReplicatedResourceSnapshotBase<
+  Kind extends 'private' | 'public',
+  Data,
+> = CRStructSnapshot<{
+  kind: Kind
+  data: Data
   host: CRSetSnapshot<string>
-  clearance: CRStructSnapshot<{
-    owner: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-    manager: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-    editor: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-  }>
+  clearance: ConvergentReplicatedResourceClearanceSnapshot
   authorization: Base64URLString
 }>
 
-export type ConveregentReplicatedResourceSnapshotPublic = CRStructSnapshot<{
-  kind: 'public'
-  data: Array<SchemaCRDT>
-  host: CRSetSnapshot<string>
-  clearance: CRStructSnapshot<{
-    owner: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-    manager: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-    editor: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-  }>
-  authorization: Base64URLString
-}>
+export type ConvergentReplicatedResourceSnapshotPrivate =
+  ConvergentReplicatedResourceSnapshotBase<'private', CipherMessage>
+
+export type ConvergentReplicatedResourceSnapshotPublic =
+  ConvergentReplicatedResourceSnapshotBase<'public', Array<SchemaCRDT>>
 
 export type ConvergentReplicatedResourceSnapshot =
-  | ConveregentReplicatedResourceSnapshotPrivate
-  | ConveregentReplicatedResourceSnapshotPublic
+  | ConvergentReplicatedResourceSnapshotPrivate
+  | ConvergentReplicatedResourceSnapshotPublic
