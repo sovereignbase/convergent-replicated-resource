@@ -1,4 +1,7 @@
-import { CRMapSnapshot } from '@sovereignbase/convergent-replicated-map'
+import {
+  CRMapAck,
+  CRMapSnapshot,
+} from '@sovereignbase/convergent-replicated-map'
 import { CRSetSnapshot } from '@sovereignbase/convergent-replicated-set'
 import { CRStructSnapshot } from '@sovereignbase/convergent-replicated-struct'
 import {
@@ -21,6 +24,7 @@ type ConvergentReplicatedResourceSnapshotBase<
   kind: Kind
   data: Data
   host: CRSetSnapshot<string>
+  frontiers: CRMapSnapshot<OpaqueIdentifier, object>
   clearance: ConvergentReplicatedResourceClearanceSnapshot
   authorization: Base64URLString
 }>
