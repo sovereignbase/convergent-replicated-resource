@@ -1,4 +1,14 @@
 ```ts
+import { CRMapSnapshot } from '@sovereignbase/convergent-replicated-map'
+import { CRSetSnapshot } from '@sovereignbase/convergent-replicated-set'
+import { CRStructSnapshot } from '@sovereignbase/convergent-replicated-struct'
+import {
+  CipherMessage,
+  OpaqueIdentifier,
+  VerifyKey,
+} from '@sovereignbase/cryptosuite'
+import type { SchemaCRDTSnapshot } from '@sovereignbase/schema-crdt'
+
 type ConvergentReplicatedResourceClearanceSnapshot = CRStructSnapshot<{
   owner: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
   manager: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
@@ -20,9 +30,17 @@ export type ConvergentReplicatedResourceSnapshotPrivate =
   ConvergentReplicatedResourceSnapshotBase<'private', CipherMessage>
 
 export type ConvergentReplicatedResourceSnapshotPublic =
-  ConvergentReplicatedResourceSnapshotBase<'public', Array<SchemaCRDT>>
+  ConvergentReplicatedResourceSnapshotBase<'public', SchemaCRDTSnapshot>
 
 export type ConvergentReplicatedResourceSnapshot =
   | ConvergentReplicatedResourceSnapshotPrivate
   | ConvergentReplicatedResourceSnapshotPublic
+
+export type RawConvergentReplicatedResourceType = {
+  kind: string
+  data: object
+  host: object
+  clearance: object
+  authorization: string
+}
 ```
