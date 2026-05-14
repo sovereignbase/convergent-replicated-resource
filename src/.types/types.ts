@@ -12,7 +12,6 @@ type ConvergentReplicatedResourceClearanceSnapshot = CRStructSnapshot<{
   owner: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
   manager: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
   editor: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
-  viewer: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
 }>
 
 type ConvergentReplicatedResourceSnapshotBase<
@@ -30,8 +29,16 @@ export type ConvergentReplicatedResourceSnapshotPrivate =
   ConvergentReplicatedResourceSnapshotBase<'private', CipherMessage>
 
 export type ConvergentReplicatedResourceSnapshotPublic =
-  ConvergentReplicatedResourceSnapshotBase<'public', Array<SchemaCRDTSnapshot>>
+  ConvergentReplicatedResourceSnapshotBase<'public', SchemaCRDTSnapshot>
 
 export type ConvergentReplicatedResourceSnapshot =
   | ConvergentReplicatedResourceSnapshotPrivate
   | ConvergentReplicatedResourceSnapshotPublic
+
+export type RawConvergentReplicatedResourceType = {
+  kind: string
+  data: object
+  host: object
+  clearance: object
+  authorization: string
+}
