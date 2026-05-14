@@ -1,5 +1,8 @@
 ```ts
-import { CRMapSnapshot } from '@sovereignbase/convergent-replicated-map'
+import {
+  CRMapAck,
+  CRMapSnapshot,
+} from '@sovereignbase/convergent-replicated-map'
 import { CRSetSnapshot } from '@sovereignbase/convergent-replicated-set'
 import { CRStructSnapshot } from '@sovereignbase/convergent-replicated-struct'
 import {
@@ -22,6 +25,7 @@ type ConvergentReplicatedResourceSnapshotBase<
   kind: Kind
   data: Data
   host: CRSetSnapshot<string>
+  frontiers: CRMapSnapshot<OpaqueIdentifier, object>
   clearance: ConvergentReplicatedResourceClearanceSnapshot
   authorization: Base64URLString
 }>
@@ -43,4 +47,39 @@ export type RawConvergentReplicatedResourceType = {
   clearance: object
   authorization: string
 }
+```
+
+```mermaid
+flowchart TD
+  hosts["HOSTS"]
+  authorized{"AUTHORIZED?"}
+  discard["DISCARD"]
+
+  kind{"KIND == public?"}
+  encrypted["EMIT ENCRYPTED EVENT"]
+  decrypt["DECRYPT"]
+  hydrate["HYDRATE BY SCHEMA CRDT TYPE"]
+
+  state["STATE"]
+  listeners["LISTENERS"]
+  changes["CHANGES"]
+  encrypt{"ENCRYPT?"}
+
+  hosts --> authorized
+
+  authorized -- no --> discard
+  authorized -- yes --> kind
+  authorized -- yes --> hosts
+
+  kind -- public --> hydrate
+  kind -- private --> encrypted
+
+  encrypted --> decrypt
+  decrypt --> hydrate
+
+  hydrate --> state
+  state --> listeners
+  listeners --> changes
+  changes --> encrypt
+  encrypt --> authorized
 ```
