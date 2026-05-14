@@ -1,7 +1,7 @@
 {
   "type": "module",
   "license": "Apache-2.0",
-  "name": "@sovereignbase/package-name",
+  "name": "@sovereignbase/convergent-replicated-resource",
   "version": "0.0.0",
   "description": "",
   "keywords": [
@@ -50,34 +50,35 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
-    "@playwright/test": "^1.58.2",
-    "@types/node": "^25.5.0",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.7.0",
     "c8": "^11.0.0",
     "edge-runtime": "^4.0.1",
     "fast-glob": "^3.3.3",
     "husky": "^9.1.7",
-    "playwright": "^1.58.2",
+    "playwright": "^1.60.0",
     "prettier": "^3.8.1",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "wrangler": "^4.79.0"
+    "wrangler": "^4.86.0"
   },
   "dependencies": {
-    "@sovereignbase/convergent-replicated-list": "^1.0.8",
+    "@sovereignbase/convergent-replicated-list": "^1.0.9",
     "@sovereignbase/convergent-replicated-map": "^1.0.2",
-    "@sovereignbase/convergent-replicated-set": "^0.0.0",
+    "@sovereignbase/convergent-replicated-set": "^1.0.1",
     "@sovereignbase/convergent-replicated-struct": "^1.1.5",
     "@sovereignbase/convergent-replicated-text": "^1.0.1",
-    "@sovereignbase/cryptosuite": "^2.2.1"
+    "@sovereignbase/cryptosuite": "^2.2.1",
+    "@sovereignbase/schema-crdt": "^1.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sovereignbase/package-name.git"
+    "url": "git+https://github.com/sovereignbase/convergent-replicated-resource.git"
   },
   "bugs": {
-    "url": "https://github.com/sovereignbase/package-name/issues"
+    "url": "https://github.com/sovereignbase/convergent-replicated-resource/issues"
   },
-  "homepage": "https://github.com/sovereignbase/package-name#readme"
+  "homepage": "https://github.com/sovereignbase/convergent-replicated-resource#readme"
 }

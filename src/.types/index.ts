@@ -6,11 +6,13 @@ import {
   OpaqueIdentifier,
   VerifyKey,
 } from '@sovereignbase/cryptosuite'
+import type { SchemaCRDTSnapshot } from '@sovereignbase/schema-crdt'
 
 type ConvergentReplicatedResourceClearanceSnapshot = CRStructSnapshot<{
   owner: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
   manager: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
   editor: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
+  viewer: CRMapSnapshot<OpaqueIdentifier, VerifyKey>
 }>
 
 type ConvergentReplicatedResourceSnapshotBase<
@@ -28,7 +30,7 @@ export type ConvergentReplicatedResourceSnapshotPrivate =
   ConvergentReplicatedResourceSnapshotBase<'private', CipherMessage>
 
 export type ConvergentReplicatedResourceSnapshotPublic =
-  ConvergentReplicatedResourceSnapshotBase<'public', Array<SchemaCRDT>>
+  ConvergentReplicatedResourceSnapshotBase<'public', Array<SchemaCRDTSnapshot>>
 
 export type ConvergentReplicatedResourceSnapshot =
   | ConvergentReplicatedResourceSnapshotPrivate
